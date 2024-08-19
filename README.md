@@ -1,0 +1,2 @@
+# mysql-playground
+mysqlのレプリケーションなどの動き・手触りを学習するためのplayground
