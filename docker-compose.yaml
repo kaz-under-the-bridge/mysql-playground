@@ -1,0 +1,48 @@
+version: '3.9'
+services:
+  db80-master:
+    container_name: db80-master
+    image: mysql:8.0.28
+    command: mysqld --user root
+    platform: linux/amd64
+    volumes:
+      - "./my_cnf_80_master.ini:/etc/mysql/conf.d/my.cnf"
+      - "./data_80_master:/var/lib/mysql"
+      - "./logs_80:/var/log/mysql"
+      - "./seed:/docker-entrypoint-initdb.d"
+    environment:
+      TZ: Asia/Tokyo
+      MYSQL_ROOT_PASSWORD: root
+      #MYSQL_DATABASE: hoge
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - "3307:3306"
+    networks:
+      - infra_default
+    #restart: always
+  db80-slave:
+    container_name: db80-slave
+    image: mysql:8.0.28
+    command: mysqld --user root
+    platform: linux/amd64
+    volumes:
+      - "./my_cnf_80_slave.ini:/etc/mysql/conf.d/my.cnf"
+      - "./data_80_slave:/var/lib/mysql"
+      - "./logs_80:/var/log/mysql"
+      - "./seed:/docker-entrypoint-initdb.d"
+    environment:
+      TZ: Asia/Tokyo
+      MYSQL_ROOT_PASSWORD: root
+      #MYSQL_DATABASE: hoge
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - "3308:3306"
+    networks:
+      - infra_default
+    #restart: always
+
+networks:
+  infra_default:
+    external: true
