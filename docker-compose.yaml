@@ -19,7 +19,7 @@ services:
     ports:
       - "3307:3306"
     networks:
-      - infra_default
+      - mysql_test
     #restart: always
   db80-slave:
     container_name: db80-slave
@@ -40,9 +40,9 @@ services:
     ports:
       - "3308:3306"
     networks:
-      - infra_default
+      - mysql_test
     #restart: always
 
 networks:
-  infra_default:
+  mysql_test:
     external: true

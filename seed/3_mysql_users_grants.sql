@@ -1,0 +1,4 @@
+-- 初期化の度にreplユーザを作るのがめんどくさい場合はコメントを外してください
+-- CREATE USER 'repl'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'repl';
+-- GRANT REPLICATION CLIENT, REPLICATION SLAVE ON *.* TO 'repl'@'%';
+-- FLUSH PRIVILEGES;
